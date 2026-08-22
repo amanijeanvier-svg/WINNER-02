@@ -495,6 +495,37 @@ input{font-family:inherit;}
               </select>
               <p id="cupHintGe" class="cup-hint hidden">💡 Peu de matchs de coupe entre ces deux équipes ? Utilisez sans hésiter leurs matchs de <b>championnat</b> dans les champs Série / Domicile / Extérieur ci-dessous — le modèle ne distingue pas la compétition d'origine, seulement le score. C'est un proxy tout à fait légitime, l'incertitude est déjà élargie automatiquement pour ce type de match.</p>
             </div>
+            <div id="stageBlockGe" class="hidden" style="margin-bottom:12px;">
+              <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--text-faint); margin-bottom:4px;">Stade de la compétition</label>
+              <select id="stageGe" class="match-type-select">
+                <option value="poules">Phase de groupes / qualifications</option>
+                <option value="32e">32e de finale</option>
+                <option value="16e">16e de finale</option>
+                <option value="8e">8e de finale</option>
+                <option value="quart">Quart de finale</option>
+                <option value="demi">Demi-finale</option>
+                <option value="finale">Finale</option>
+              </select>
+              <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--text-faint); margin:10px 0 4px;">Format de la confrontation</label>
+              <select id="legGe" class="match-type-select">
+                <option value="sec">Match sec (aucun retour)</option>
+                <option value="aller">Match aller (1re manche)</option>
+                <option value="retour">Match retour (2e manche)</option>
+              </select>
+              <div id="aggregateBlockGe" class="hidden" style="margin-top:10px;">
+                <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--text-faint); margin-bottom:4px;">Score du match aller (obligatoire pour un match retour)</label>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <input type="number" id="aggAllerA" min="0" placeholder="A" style="width:56px; background:var(--panel2,#0d0f16); border:1px solid var(--line); border-radius:8px; padding:9px 6px; color:var(--text); font-size:14px; text-align:center;">
+                  <span style="color:var(--text-faint); font-size:12px;">A (aller) — B (aller)</span>
+                  <input type="number" id="aggAllerB" min="0" placeholder="B" style="width:56px; background:var(--panel2,#0d0f16); border:1px solid var(--line); border-radius:8px; padding:9px 6px; color:var(--text); font-size:14px; text-align:center;">
+                </div>
+                <p class="cup-hint" style="margin-top:8px;">💡 L'app calcule le cumul, identifie qui est mené/en tête, et ajuste : l'équipe menée pousse davantage offensivement (lambda relevé), l'équipe en tête temporise (lambda légèrement réduit, incertitude resserrée sur son but encaissé).</p>
+              </div>
+            </div>
+            <div style="margin-bottom:12px;">
+              <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--text-faint); margin-bottom:4px;">Ligue / championnat (optionnel — affine la calibration par ligue)</label>
+              <input type="text" id="leagueGe" placeholder="ex: Ligue 1, Premier League..." style="width:100%; background:var(--panel2,#0d0f16); border:1px solid var(--line); border-radius:8px; padding:9px 10px; color:var(--text); font-size:13px;">
+            </div>
             <div class="flags-grid">
               <div class="flags-col">
                 <div class="flags-team-lbl" id="flagsNameA">A</div>
@@ -618,6 +649,36 @@ input{font-family:inherit;}
                 <option value="europe">Compétition continentale (EuroLeague...)</option>
               </select>
               <p id="cupHintBk" class="cup-hint hidden">💡 Peu de matchs à élimination directe entre ces deux équipes ? Utilisez leurs matchs de <b>saison régulière</b> dans les champs Série / Domicile / Extérieur — le modèle ne distingue pas la compétition d'origine, seulement le score. L'incertitude est déjà élargie automatiquement pour ce type de match.</p>
+            </div>
+            <div id="stageBlockBk" class="hidden" style="margin-bottom:12px;">
+              <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--text-faint); margin-bottom:4px;">Stade de la compétition</label>
+              <select id="stageBk" class="match-type-select">
+                <option value="poules">Phase de groupes / qualifications</option>
+                <option value="16e">16e de finale</option>
+                <option value="8e">8e de finale</option>
+                <option value="quart">Quart de finale</option>
+                <option value="demi">Demi-finale</option>
+                <option value="finale">Finale</option>
+              </select>
+              <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--text-faint); margin:10px 0 4px;">Format de la confrontation</label>
+              <select id="legBk" class="match-type-select">
+                <option value="sec">Match unique (aucun retour)</option>
+                <option value="aller">Match aller (1re manche)</option>
+                <option value="retour">Match retour (2e manche)</option>
+              </select>
+              <div id="aggregateBlockBk" class="hidden" style="margin-top:10px;">
+                <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--text-faint); margin-bottom:4px;">Score du match aller (obligatoire pour un match retour)</label>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <input type="number" id="aggAllerABk" min="0" placeholder="A" style="width:56px; background:var(--panel2,#0d0f16); border:1px solid var(--line); border-radius:8px; padding:9px 6px; color:var(--text); font-size:14px; text-align:center;">
+                  <span style="color:var(--text-faint); font-size:12px;">A (aller) — B (aller)</span>
+                  <input type="number" id="aggAllerBBk" min="0" placeholder="B" style="width:56px; background:var(--panel2,#0d0f16); border:1px solid var(--line); border-radius:8px; padding:9px 6px; color:var(--text); font-size:14px; text-align:center;">
+                </div>
+                <p class="cup-hint" style="margin-top:8px;">💡 L'app calcule le cumul et ajuste : l'équipe menée pousse davantage offensivement, l'équipe en tête temporise légèrement.</p>
+              </div>
+            </div>
+            <div style="margin-bottom:12px;">
+              <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--text-faint); margin-bottom:4px;">Ligue / championnat (optionnel — affine la calibration par ligue)</label>
+              <input type="text" id="leagueBk" placeholder="ex: NBA, EuroLeague..." style="width:100%; background:var(--panel2,#0d0f16); border:1px solid var(--line); border-radius:8px; padding:9px 10px; color:var(--text); font-size:13px;">
             </div>
             <div class="flags-grid">
               <div class="flags-col">
@@ -1139,6 +1200,7 @@ document.querySelectorAll('.tab').forEach(btn=>{
 });
 let journalSelectedDay = null;
 const subState = {hi:'football', be:'best', bb:'best'};
+const leagueFilterState = {}; // filtre d'affichage par sport dans Histoire — vide = "toutes ligues" (global)
 document.querySelectorAll('.subnav button').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     const group = btn.dataset.group;
@@ -1265,7 +1327,7 @@ function parseEntries(raw){
    (c) auto-calibration du rho Dixon-Coles sur l'historique vérifié
    (d) pondération adaptative des sources de données (domicile/forme/H2H/adverse)
 ================================================================= */
-const MARKET_LABELS = {score_exact:'Score exact', btts:'BTTS', double_chance:'Double chance', '1x2':'1X2 / Vainqueur', over_under:'Over / Under', non_classe:'Non classé'};
+const MARKET_LABELS = {score_exact:'Score exact', btts:'BTTS', double_chance:'Double chance', '1x2':'1X2 / Vainqueur', over_under:'Over / Under', stat_corners:'Corners (ligne)', stat_shots:'Tirs cadrés (ligne)', non_classe:'Non classé'};
 function marketTypeFromEval(evalSpec){
   if(!evalSpec) return 'non_classe';
   switch(evalSpec.type){
@@ -1274,6 +1336,7 @@ function marketTypeFromEval(evalSpec){
     case 'resultDC': return 'double_chance';
     case 'result1x2': case 'result2way': case 'marginBracket': return '1x2';
     case 'goalsLine': return 'over_under';
+    case 'statLine': return evalSpec.stat==='corners' ? 'stat_corners' : evalSpec.stat==='shots' ? 'stat_shots' : 'non_classe';
     default: return 'non_classe';
   }
 }
@@ -1294,15 +1357,27 @@ function absenceAdjustment(nb){
   return 1 - 0.08*n;
 }
 
-/* -- (c) rho Dixon-Coles auto-calibré (football uniquement, matrice Poisson) -- */
-function getCalibratedRho(sport){
-  const v = localStorage.getItem('ea_rho_'+sport);
+/* -- (c) rho Dixon-Coles auto-calibré (football uniquement, matrice Poisson) --
+   Segmenté par ligue : une ligue avec assez d'historique propre (≥30 matchs
+   VÉRIFIÉS pour ELLE) obtient son propre rho ; sinon repli automatique et
+   transparent sur le rho global (toutes ligues confondues), pour ne jamais
+   bloquer une ligue encore peu fournie derrière un calcul vide. */
+function rhoKey(sport, league){ const s=leagueSlug(league); return 'ea_rho_'+sport+(s?('__'+s):''); }
+function getCalibratedRho(sport, league){
+  const key = league ? rhoKey(sport, league) : rhoKey(sport, null);
+  const v = localStorage.getItem(key);
   const n = parseFloat(v);
-  return isNaN(n) ? -0.1 : n;
+  if(!isNaN(n)) return n;
+  if(league){ const g=localStorage.getItem(rhoKey(sport,null)); const gn=parseFloat(g); if(!isNaN(gn)) return gn; }
+  return -0.1;
 }
-function calibrateRho(sport){
-  const entries = (TRACK[sport]||[]).filter(e=>e.lambdaA!=null && e.lambdaB!=null && e.finalScore);
-  if(entries.length<30) return {rho:getCalibratedRho(sport), n:entries.length, calibrated:false, needed:30};
+function calibrateRho(sport, league){
+  const allEntries = (TRACK[sport]||[]).filter(e=>e.lambdaA!=null && e.lambdaB!=null && e.finalScore);
+  const scoped = league ? allEntries.filter(e=>leagueSlug(e.league)===leagueSlug(league)) : allEntries;
+  const useGlobalFallback = league && scoped.length<30;
+  const entries = useGlobalFallback ? allEntries : scoped;
+  const key = (league && !useGlobalFallback) ? rhoKey(sport, league) : rhoKey(sport, null);
+  if(entries.length<30) return {rho:getCalibratedRho(sport, league), n:entries.length, calibrated:false, needed:30, scopedToLeague:!useGlobalFallback && !!league};
   let bestRho=-0.1, bestErr=Infinity;
   for(let rho=-0.25; rho<=0.001; rho+=0.01){
     let err=0;
@@ -1315,47 +1390,68 @@ function calibrateRho(sport){
     err/=entries.length;
     if(err<bestErr){ bestErr=err; bestRho=Math.round(rho*100)/100; }
   }
-  localStorage.setItem('ea_rho_'+sport, String(bestRho));
-  return {rho:bestRho, n:entries.length, calibrated:true, brier:bestErr};
+  localStorage.setItem(key, String(bestRho));
+  return {rho:bestRho, n:entries.length, calibrated:true, brier:bestErr, scopedToLeague:!useGlobalFallback && !!league};
 }
 
-/* -- (d) pondération adaptative des sources (domicile / forme / H2H / défense adverse) -- */
+/* -- (d) pondération adaptative des sources (domicile / forme / H2H / défense adverse) --
+   Même principe de repli : poids propres à une ligue une fois ≥40 vérifications
+   cumulées POUR CETTE LIGUE, sinon on utilise les poids globaux en attendant. */
 const ADAPTIVE_SOURCES = ['domicile','serie','h2h','defense_adverse'];
 const DEFAULT_SOURCE_WEIGHTS = {domicile:.35, serie:.25, h2h:.25, defense_adverse:.15};
-function loadAdaptiveWeights(sport){
-  try{ const s=JSON.parse(localStorage.getItem('ea_weights_'+sport)||'null'); if(s) return s; }catch(e){}
+function weightsKey(sport, league){ const s=leagueSlug(league); return 'ea_weights_'+sport+(s?('__'+s):''); }
+function srcperfKey(sport, league){ const s=leagueSlug(league); return 'ea_srcperf_'+sport+(s?('__'+s):''); }
+function loadAdaptiveWeights(sport, league){
+  const key = league ? weightsKey(sport, league) : weightsKey(sport, null);
+  try{ const s=JSON.parse(localStorage.getItem(key)||'null'); if(s) return s; }catch(e){}
+  if(league){
+    try{ const g=JSON.parse(localStorage.getItem(weightsKey(sport,null))||'null'); if(g) return g; }catch(e){}
+  }
   return {...DEFAULT_SOURCE_WEIGHTS};
 }
-function loadSourcePerf(sport){
-  try{ const s=JSON.parse(localStorage.getItem('ea_srcperf_'+sport)||'null'); if(s) return s; }catch(e){}
+function loadSourcePerf(sport, league){
+  const key = league ? srcperfKey(sport, league) : srcperfKey(sport, null);
+  try{ const s=JSON.parse(localStorage.getItem(key)||'null'); if(s) return s; }catch(e){}
   const o={}; ADAPTIVE_SOURCES.forEach(k=>o[k]={hits:0,n:0}); return o;
 }
-function updateSourcePerformance(sport, components, finalA, finalB){
+function updateSourcePerformance(sport, components, finalA, finalB, league){
   if(!components || finalA==null || finalB==null) return;
-  const perf = loadSourcePerf(sport);
-  [{side:'A', target:finalA}, {side:'B', target:finalB}].forEach(({side,target})=>{
-    const errs={};
-    ADAPTIVE_SOURCES.forEach(k=>{ const v=components[k+side]; if(v!=null && !isNaN(v)) errs[k]=Math.abs(v-target); });
-    const keys=Object.keys(errs);
-    if(keys.length===0) return;
-    const best = keys.reduce((a,b)=>errs[a]<=errs[b]?a:b);
-    keys.forEach(k=>{ perf[k].n++; if(k===best) perf[k].hits++; });
+  // Alimente TOUJOURS le registre global (pour ne jamais perdre de signal),
+  // et EN PLUS le registre propre à la ligue si elle est renseignée.
+  [null, league||null].filter((v,i,arr)=>arr.indexOf(v)===i).forEach(scopeLeague=>{
+    const perf = loadSourcePerf(sport, scopeLeague);
+    [{side:'A', target:finalA}, {side:'B', target:finalB}].forEach(({side,target})=>{
+      const errs={};
+      ADAPTIVE_SOURCES.forEach(k=>{ const v=components[k+side]; if(v!=null && !isNaN(v)) errs[k]=Math.abs(v-target); });
+      const keys=Object.keys(errs);
+      if(keys.length===0) return;
+      const best = keys.reduce((a,b)=>errs[a]<=errs[b]?a:b);
+      keys.forEach(k=>{ perf[k].n++; if(k===best) perf[k].hits++; });
+    });
+    localStorage.setItem(srcperfKey(sport, scopeLeague), JSON.stringify(perf));
+    const totalN = ADAPTIVE_SOURCES.reduce((s,k)=>s+perf[k].n,0);
+    if(totalN>=40){
+      const rates = ADAPTIVE_SOURCES.map(k=> perf[k].n>0 ? perf[k].hits/perf[k].n : 0.25);
+      const sum = rates.reduce((a,b)=>a+b,0)||1;
+      const w={}; ADAPTIVE_SOURCES.forEach((k,i)=>{ w[k]=Math.max(0.10, Math.min(0.55, rates[i]/sum)); });
+      const wsum=Object.values(w).reduce((a,b)=>a+b,0);
+      ADAPTIVE_SOURCES.forEach(k=> w[k]=w[k]/wsum);
+      localStorage.setItem(weightsKey(sport, scopeLeague), JSON.stringify(w));
+    }
   });
-  localStorage.setItem('ea_srcperf_'+sport, JSON.stringify(perf));
-  const totalN = ADAPTIVE_SOURCES.reduce((s,k)=>s+perf[k].n,0);
-  if(totalN>=40){
-    const rates = ADAPTIVE_SOURCES.map(k=> perf[k].n>0 ? perf[k].hits/perf[k].n : 0.25);
-    const sum = rates.reduce((a,b)=>a+b,0)||1;
-    const w={}; ADAPTIVE_SOURCES.forEach((k,i)=>{ w[k]=Math.max(0.10, Math.min(0.55, rates[i]/sum)); });
-    const wsum=Object.values(w).reduce((a,b)=>a+b,0);
-    ADAPTIVE_SOURCES.forEach(k=> w[k]=w[k]/wsum);
-    localStorage.setItem('ea_weights_'+sport, JSON.stringify(w));
-  }
 }
-function adaptiveWeightsSummary(sport){
-  const w=loadAdaptiveWeights(sport), perf=loadSourcePerf(sport);
+function adaptiveWeightsSummary(sport, league){
+  const scoped = league ? loadSourcePerf(sport, league) : null;
+  const scopedN = scoped ? ADAPTIVE_SOURCES.reduce((s,k)=>s+scoped[k].n,0) : 0;
+  const useLeague = !!league && scopedN>0;
+  const w=loadAdaptiveWeights(sport, useLeague?league:null), perf=loadSourcePerf(sport, useLeague?league:null);
   const totalN=ADAPTIVE_SOURCES.reduce((s,k)=>s+perf[k].n,0);
-  return {weights:w, perf, totalN};
+  return {weights:w, perf, totalN, scopedToLeague:useLeague};
+}
+function listKnownLeagues(sport){
+  const set = new Set();
+  (TRACK[sport]||[]).forEach(e=>{ if(e.league) set.add(e.league); });
+  return [...set].sort((a,b)=>a.localeCompare(b));
 }
 
 /* ================================================================
@@ -1403,15 +1499,91 @@ function addRecord(sport, record){
    contrairement à Histoire). C'est ici que se construit la preuve
    réelle de fiabilité : chaque pari vérifié contre un score final
    entré par vous vient nourrir ce registre, pour toujours.
+
+   STOCKAGE : IndexedDB est la mémoire de fond (pas de plafond pratique,
+   largement au-delà de la limite ~5-10 Mo de localStorage). localStorage
+   ne garde plus qu'un miroir des ~300 entrées les plus récentes par sport,
+   pour un affichage instantané au lancement avant même que IndexedDB ait
+   fini de répondre. La bascule est transparente : au premier lancement
+   après cette mise à jour, l'historique déjà présent dans localStorage
+   est automatiquement recopié dans IndexedDB une seule fois.
 ================================================================= */
 const TRACK_KEY = 'ea_v3_track';
+const TRACK_MIRROR_SIZE = 300;
+const TRACK_SOFT_CAP = 50000; // garde-fou large, jamais une vraie limite en usage réel
 let TRACK = {football:[], basketball:[]};
-function loadTrack(){ try{ const s=JSON.parse(localStorage.getItem(TRACK_KEY)||'null'); if(s) TRACK=s; }catch(e){} }
-function persistTrack(){ localStorage.setItem(TRACK_KEY, JSON.stringify(TRACK)); }
+let idbHandle = null;
+let idbReady = false;
+
+function openIDB(){
+  return new Promise((resolve)=>{
+    if(!('indexedDB' in window)){ resolve(null); return; }
+    try{
+      const req = indexedDB.open('ea_track_db', 1);
+      req.onupgradeneeded = (e)=>{
+        const db = e.target.result;
+        if(!db.objectStoreNames.contains('entries')){
+          const store = db.createObjectStore('entries', {keyPath:'_id', autoIncrement:true});
+          store.createIndex('sport', 'sport', {unique:false});
+        }
+      };
+      req.onsuccess = (e)=> resolve(e.target.result);
+      req.onerror = ()=> resolve(null);
+    }catch(e){ resolve(null); }
+  });
+}
+function idbAddEntry(sport, entry){
+  if(!idbHandle) return Promise.resolve(false);
+  return new Promise((resolve)=>{
+    try{
+      const tx = idbHandle.transaction('entries', 'readwrite');
+      tx.objectStore('entries').add({sport, ...entry});
+      tx.oncomplete = ()=> resolve(true);
+      tx.onerror = ()=> resolve(false);
+    }catch(e){ resolve(false); }
+  });
+}
+function idbGetAll(sport){
+  if(!idbHandle) return Promise.resolve(null);
+  return new Promise((resolve)=>{
+    try{
+      const tx = idbHandle.transaction('entries', 'readonly');
+      const req = tx.objectStore('entries').index('sport').getAll(sport);
+      req.onsuccess = ()=> resolve(req.result||[]);
+      req.onerror = ()=> resolve(null);
+    }catch(e){ resolve(null); }
+  });
+}
+async function loadTrack(){
+  // 1) repli localStorage immédiat (affichage rapide, ou navigateurs sans IndexedDB)
+  try{ const s=JSON.parse(localStorage.getItem(TRACK_KEY)||'null'); if(s) TRACK=s; }catch(e){}
+  // 2) IndexedDB = mémoire de fond, sans plafond pratique
+  idbHandle = await openIDB();
+  if(!idbHandle) return; // navigateur sans IndexedDB : on reste sur le miroir localStorage (300 max)
+  idbReady = true;
+  for(const sport of ['football','basketball']){
+    const stored = await idbGetAll(sport);
+    if(stored && stored.length){
+      TRACK[sport] = stored.sort((a,b)=>b.timestamp-a.timestamp);
+    } else if(TRACK[sport] && TRACK[sport].length){
+      // migration ponctuelle : le miroir localStorage existant devient la base IndexedDB
+      for(const e of TRACK[sport]) await idbAddEntry(sport, e);
+    }
+  }
+}
+function persistTrack(){
+  // Miroir localStorage léger : seulement les plus récentes, pour un chargement
+  // instantané au prochain lancement — la mémoire complète reste dans IndexedDB.
+  try{
+    const mirror = {football:TRACK.football.slice(0,TRACK_MIRROR_SIZE), basketball:TRACK.basketball.slice(0,TRACK_MIRROR_SIZE)};
+    localStorage.setItem(TRACK_KEY, JSON.stringify(mirror));
+  }catch(e){}
+}
 function pushTrackEntry(sport, entry){
   TRACK[sport].unshift(entry);
-  if(TRACK[sport].length>300) TRACK[sport].length=300; // cap raisonnable, évite un localStorage qui explose
+  if(TRACK[sport].length>TRACK_SOFT_CAP) TRACK[sport].length=TRACK_SOFT_CAP;
   persistTrack();
+  if(idbReady) idbAddEntry(sport, entry); // écriture en arrière-plan, non bloquante
 }
 function computeCalibration(sport){
   // Rétro-compatible : bilan global (toutes anciennes cartes qui l'utilisent encore).
@@ -1423,8 +1595,9 @@ function computeCalibration(sport){
   const brier = verifiable.reduce((s,x)=>s+Math.pow(x.p-(x.hit?1:0),2),0)/verifiable.length;
   return {n:verifiable.length, hits, hitRate, brier};
 }
-function computeCalibrationByMarket(sport){
-  const all = TRACK[sport].flatMap(e=>e.evaluations);
+function computeCalibrationByMarket(sport, league){
+  const scopedEntries = league ? TRACK[sport].filter(e=>leagueSlug(e.league)===leagueSlug(league)) : TRACK[sport];
+  const all = scopedEntries.flatMap(e=>e.evaluations);
   const verifiable = all.filter(x=>x.hit!==null);
   if(verifiable.length===0) return null;
   const groups = {};
@@ -1450,22 +1623,28 @@ function computeCalibrationByMarket(sport){
    Nécessite un minimum de 20 vérifications sur le marché concerné avant de corriger,
    pour éviter de sur-ajuster sur du bruit. Correction plafonnée à ±20 points. */
 const RECAL_MIN_N = 20;
-function computeMarketRecalibration(sport){
-  const calib = computeCalibrationByMarket(sport);
+function computeMarketRecalibration(sport, league){
+  // Priorité à la calibration propre à la ligue dès qu'un marché y atteint le seuil ;
+  // sinon repli marché par marché sur la calibration globale (toutes ligues).
+  const calibLeague = league ? computeCalibrationByMarket(sport, league) : null;
+  const calibGlobal = computeCalibrationByMarket(sport, null);
   const out = {};
-  if(!calib) return out;
-  Object.keys(calib).forEach(mt=>{
-    const c = calib[mt];
-    if(c.n>=RECAL_MIN_N && c.avgP>0){
+  if(!calibGlobal && !calibLeague) return out;
+  const marketTypes = new Set([...Object.keys(calibGlobal||{}), ...Object.keys(calibLeague||{})]);
+  marketTypes.forEach(mt=>{
+    const cL = calibLeague ? calibLeague[mt] : null;
+    const cG = calibGlobal ? calibGlobal[mt] : null;
+    const c = (cL && cL.n>=RECAL_MIN_N) ? cL : cG;
+    if(c && c.n>=RECAL_MIN_N && c.avgP>0){
       // facteur multiplicatif = réel/annoncé, plafonné pour rester raisonnable
       const factor = Math.max(0.65, Math.min(1.10, c.hitRate/c.avgP));
-      out[mt] = {factor, n:c.n, gap:c.gap};
+      out[mt] = {factor, n:c.n, gap:c.gap, scopedToLeague: c===cL};
     }
   });
   return out;
 }
-function applyMarketRecalibration(sport, bets){
-  const recal = computeMarketRecalibration(sport);
+function applyMarketRecalibration(sport, bets, league){
+  const recal = computeMarketRecalibration(sport, league);
   return bets.map(b=>{
     const mt = marketTypeFromEval(b.eval);
     const r = recal[mt];
@@ -1545,20 +1724,22 @@ function notifyDayResult(sport, rec, finalA, finalB){
   );
 }
 
-function markResult(sport, recordId, finalA, finalB){
+function markResult(sport, recordId, finalA, finalB, finalStats){
   const rec = DB[sport].find(r=>r.id===recordId);
   if(!rec) return;
+  finalStats = finalStats || {};
   const evaluations = [];
-  rec.bets.forEach(b=>{ evaluations.push({label:b.label, p:b.p, hit:evaluateBetOutcome(b.eval, finalA, finalB), marketType:marketTypeFromEval(b.eval)}); });
-  rec.topScores.forEach(s=>{ evaluations.push({label:(sport==='basketball'?'Fourchette : ':'Score exact : ')+s.label, p:s.p, hit:evaluateBetOutcome(s.eval, finalA, finalB), marketType:marketTypeFromEval(s.eval)}); });
+  rec.bets.forEach(b=>{ evaluations.push({label:b.label, p:b.p, hit:evaluateBetOutcome(b.eval, finalA, finalB, finalStats), marketType:marketTypeFromEval(b.eval)}); });
+  rec.topScores.forEach(s=>{ evaluations.push({label:(sport==='basketball'?'Fourchette : ':'Score exact : ')+s.label, p:s.p, hit:evaluateBetOutcome(s.eval, finalA, finalB, finalStats), marketType:marketTypeFromEval(s.eval)}); });
   rec.resultMarked = true;
   rec.finalScore = {a:finalA, b:finalB};
+  rec.finalStats = finalStats;
   rec.evaluations = evaluations;
   persistDB();
-  pushTrackEntry(sport, {timestamp:Date.now(), nameA:rec.nameA, nameB:rec.nameB, evaluations, lambdaA:rec.lambdaA, lambdaB:rec.lambdaB, finalScore:{a:finalA,b:finalB}});
+  pushTrackEntry(sport, {timestamp:Date.now(), nameA:rec.nameA, nameB:rec.nameB, league:rec.league||'', evaluations, lambdaA:rec.lambdaA, lambdaB:rec.lambdaB, finalScore:{a:finalA,b:finalB}, finalStats});
   // Alimente le moteur adaptatif (absences déjà appliquées en amont, ceci affine les poids de sources)
-  if(rec.components) updateSourcePerformance(sport, rec.components, finalA, finalB);
-  if(sport==='football') calibrateRho('football');
+  if(rec.components) updateSourcePerformance(sport, rec.components, finalA, finalB, rec.league);
+  if(sport==='football') calibrateRho('football', rec.league);
   archiveResult(sport, rec, finalA, finalB);
   notifyDayResult(sport, rec, finalA, finalB);
   renderHistory();
@@ -1697,8 +1878,20 @@ function updateRankPreview(prefix){
   document.getElementById(id).addEventListener('input', e=>{ standings[id]= e.target.value===''?null:parseFloat(e.target.value); updateRankPreview('A'); updateRankPreview('B'); });
 });
 document.getElementById('matchday').addEventListener('input', e=>{ standings.matchday = e.target.value || null; });
-const matchFlags = {matchType:'championnat', injuryA:false, fatigueA:false, uncertainA:false, injuryB:false, fatigueB:false, uncertainB:false, posA:{gk:0,def:0,mid:0,att:0}, posB:{gk:0,def:0,mid:0,att:0}};
-document.getElementById('matchTypeGe').addEventListener('change', e=>{ matchFlags.matchType = e.target.value; document.getElementById('cupHintGe').classList.toggle('hidden', e.target.value!=='coupe'); });
+const matchFlags = {matchType:'championnat', league:'', stage:'poules', leg:'sec', aggAllerA:null, aggAllerB:null, injuryA:false, fatigueA:false, uncertainA:false, injuryB:false, fatigueB:false, uncertainB:false, posA:{gk:0,def:0,mid:0,att:0}, posB:{gk:0,def:0,mid:0,att:0}};
+function normalizeLeagueName(raw){ return (raw||'').trim(); }
+function leagueSlug(name){ return normalizeLeagueName(name).toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,''); }
+function syncStageBlockGe(){
+  const isKO = matchFlags.matchType==='coupe' || matchFlags.matchType==='europe';
+  document.getElementById('stageBlockGe').classList.toggle('hidden', !isKO);
+  document.getElementById('aggregateBlockGe').classList.toggle('hidden', matchFlags.leg!=='retour');
+}
+document.getElementById('matchTypeGe').addEventListener('change', e=>{ matchFlags.matchType = e.target.value; document.getElementById('cupHintGe').classList.toggle('hidden', e.target.value!=='coupe'); syncStageBlockGe(); });
+document.getElementById('stageGe').addEventListener('change', e=>{ matchFlags.stage = e.target.value; });
+document.getElementById('legGe').addEventListener('change', e=>{ matchFlags.leg = e.target.value; syncStageBlockGe(); });
+document.getElementById('aggAllerA').addEventListener('input', e=>{ matchFlags.aggAllerA = e.target.value===''?null:parseInt(e.target.value,10); });
+document.getElementById('aggAllerB').addEventListener('input', e=>{ matchFlags.aggAllerB = e.target.value===''?null:parseInt(e.target.value,10); });
+document.getElementById('leagueGe').addEventListener('input', e=>{ matchFlags.league = normalizeLeagueName(e.target.value); });
 ['injuryA','fatigueA','uncertainA','injuryB','fatigueB','uncertainB'].forEach(id=>{
   document.getElementById(id).addEventListener('change', e=>{ matchFlags[id] = e.target.checked; });
 });
@@ -1725,18 +1918,51 @@ document.getElementById('resetBtn').addEventListener('click', ()=>{
   document.getElementById('rankPreviewA').textContent=''; document.getElementById('rankPreviewB').textContent='';
   ADV_FIELDS.forEach(id=>{ document.getElementById(id).value=''; advStats[id]=null; });
   document.getElementById('matchTypeGe').value='championnat'; matchFlags.matchType='championnat';
+  document.getElementById('stageGe').value='poules'; matchFlags.stage='poules';
+  document.getElementById('legGe').value='sec'; matchFlags.leg='sec';
+  document.getElementById('aggAllerA').value=''; document.getElementById('aggAllerB').value='';
+  matchFlags.aggAllerA=null; matchFlags.aggAllerB=null;
+  syncStageBlockGe();
+  document.getElementById('leagueGe').value=''; matchFlags.league='';
   ['injuryA','fatigueA','uncertainA','injuryB','fatigueB','uncertainB'].forEach(id=>{ document.getElementById(id).checked=false; matchFlags[id]=false; });
   ['posGkA','posDefA','posMidA','posAttA','posGkB','posDefB','posMidB','posAttB'].forEach(id=>{ document.getElementById(id).value=''; });
   matchFlags.posA={gk:0,def:0,mid:0,att:0}; matchFlags.posB={gk:0,def:0,mid:0,att:0};
   document.getElementById('resultsGe').style.display='none'; document.getElementById('emptyStateGe').style.display='flex';
 });
 
+/* -- Phase de compétition et confrontation aller/retour --
+   Une finale ou demi-finale se joue avec plus de rigueur tactique et moins
+   de folie offensive qu'un match de poules ; un match retour dépend
+   fortement du score aller (l'équipe menée pousse, l'équipe en tête gère). */
+const STAGE_TENSION = {poules:1.0, '32e':1.0, '16e':1.02, '8e':1.04, quart:1.07, demi:1.11, finale:1.16};
+function stageAdjustment(stage){
+  // Plus l'enjeu monte, plus le jeu se resserre : moins de buts, moins de folie —
+  // traduit par une légère baisse conjointe des lambdas ET un sigma Monte Carlo réduit
+  // (des scores plus prévisibles/serrés, moins de scénarios extrêmes).
+  const tension = STAGE_TENSION[stage] || 1.0;
+  return {goalDamp: 1/tension, sigmaDamp: 1/Math.sqrt(tension)};
+}
+function aggregateAdjustment(leg, aggAllerA, aggAllerB){
+  // Retourne un ajustement du lambda pour le match retour, selon qui est mené au cumul.
+  if(leg!=='retour' || aggAllerA==null || aggAllerB==null) return {factorA:1, factorB:1, note:null};
+  const diff = aggAllerA - aggAllerB; // >0 : A menait à l'aller
+  // L'équipe qui doit remonter un déficit pousse offensivement (jusqu'à +18% si déficit large) ;
+  // l'équipe en tête temporise (jusqu'à -12%), sans jamais renverser complètement le calcul de forme.
+  const pressure = clamp(Math.abs(diff)*0.09, 0, 0.18);
+  const manage = clamp(Math.abs(diff)*0.06, 0, 0.12);
+  let factorA=1, factorB=1, note=null;
+  if(diff>0){ factorB=1+pressure; factorA=1-manage; note=`B est mené ${aggAllerA}-${aggAllerB} au cumul : pression offensive attendue.`; }
+  else if(diff<0){ factorA=1+pressure; factorB=1-manage; note=`A est mené ${aggAllerB}-${aggAllerA} au cumul : pression offensive attendue.`; }
+  else { note=`Cumul à égalité ${aggAllerA}-${aggAllerB} après l'aller : match retour à enjeu maximal, aucune équipe ne peut temporiser.`; }
+  return {factorA, factorB, note};
+}
+
 function computeGeneseLambdas(){
   const aDomFor=avg(store.aDom,0), aDomAg=avg(store.aDom,1);
   const aSerieFor=avg(store.aSerie,0), abFor=avg(store.ab,0);
   const bExtFor=avg(store.bExt,0), bExtAg=avg(store.bExt,1);
   const bSerieFor=avg(store.bSerie,0), baFor=avg(store.ba,0);
-  const W = loadAdaptiveWeights('football');
+  const W = loadAdaptiveWeights('football', matchFlags.league);
   let lambdaA=weightedLambda([{v:aDomFor,w:W.domicile},{v:aSerieFor,w:W.serie},{v:abFor,w:W.h2h},{v:bExtAg,w:W.defense_adverse}]);
   let lambdaB=weightedLambda([{v:bExtFor,w:W.domicile},{v:bSerieFor,w:W.serie},{v:baFor,w:W.h2h},{v:aDomAg,w:W.defense_adverse}]);
   const geneseComponents = {domicileA:aDomFor, serieA:aSerieFor, h2hA:abFor, defense_adverseA:bExtAg, domicileB:bExtFor, serieB:bSerieFor, h2hB:baFor, defense_adverseB:aDomAg};
@@ -1775,7 +2001,16 @@ function computeGeneseLambdas(){
   const posAdjB = positionAdjustment(matchFlags.posB);
   if(lambdaA!==null){ lambdaA *= posAdjA.attackFactor; lambdaA *= (1+posAdjB.defenseWeaken); }
   if(lambdaB!==null){ lambdaB *= posAdjB.attackFactor; lambdaB *= (1+posAdjA.defenseWeaken); }
-  return {lambdaA, lambdaB, totalAdj, zoneA, zoneB, phaseLabel, trendA, trendB, eloIdx:eIdx, qualityIdx, components:geneseComponents};
+  // Enjeu du stade de compétition (16e, quart, demi, finale...) : resserre le jeu.
+  const stageIsKO = matchFlags.matchType==='coupe' || matchFlags.matchType==='europe';
+  const stageAdj = stageIsKO ? stageAdjustment(matchFlags.stage) : {goalDamp:1, sigmaDamp:1};
+  if(lambdaA!==null) lambdaA *= stageAdj.goalDamp;
+  if(lambdaB!==null) lambdaB *= stageAdj.goalDamp;
+  // Match retour : dépend du score aller (cumul), pousse l'équipe menée, calme l'équipe en tête.
+  const aggAdj = aggregateAdjustment(matchFlags.leg, matchFlags.aggAllerA, matchFlags.aggAllerB);
+  if(lambdaA!==null) lambdaA *= aggAdj.factorA;
+  if(lambdaB!==null) lambdaB *= aggAdj.factorB;
+  return {lambdaA, lambdaB, totalAdj, zoneA, zoneB, phaseLabel, trendA, trendB, eloIdx:eIdx, qualityIdx, sigmaDamp:stageAdj.sigmaDamp, aggregateNote:aggAdj.note, components:geneseComponents};
 }
 
 /* ================================================================
@@ -1787,7 +2022,7 @@ function parseBracketRange(bracket){
   if(bracket==='21+') return [21, 999];
   return bracket.split('-').map(Number);
 }
-function evaluateBetOutcome(evalSpec, finalA, finalB){
+function evaluateBetOutcome(evalSpec, finalA, finalB, finalStats){
   if(!evalSpec || evalSpec.type==='unverifiable' || finalA==null || finalB==null) return null;
   switch(evalSpec.type){
     case 'result1x2': { const w=finalA>finalB?'A':finalB>finalA?'B':'draw'; return w===evalSpec.outcome; }
@@ -1803,12 +2038,29 @@ function evaluateBetOutcome(evalSpec, finalA, finalB){
       return margin>=lo && margin<=hi;
     }
     case 'scoreBracket': return Math.abs(finalA-evalSpec.a)<=evalSpec.tolerance && Math.abs(finalB-evalSpec.b)<=evalSpec.tolerance;
+    case 'statLine': {
+      // Marché sur une statistique annexe (corners, tirs cadrés) — nécessite que
+      // le total réel ait été saisi en plus du score ; sinon reste non vérifiable.
+      if(!finalStats || finalStats[evalSpec.stat]==null || isNaN(finalStats[evalSpec.stat])) return null;
+      const t = finalStats[evalSpec.stat];
+      return evalSpec.op==='over' ? t>evalSpec.line : t<evalSpec.line;
+    }
     default: return null;
   }
 }
 
-function pickCornersMarket(){ if(advStats.cornersA==null||advStats.cornersB==null) return null; return {...pickTotalLineMarket(advStats.cornersA+advStats.cornersB,6.5,'corners'), cat:'corners', eval:{type:'unverifiable'}}; }
-function pickShotsMarket(){ if(advStats.shotsA==null||advStats.shotsB==null) return null; return {...pickTotalLineMarket(advStats.shotsA+advStats.shotsB,5.5,'tirs cadrés (cumulés)'), cat:'tirs cadrés', eval:{type:'unverifiable'}}; }
+function pickCornersMarket(){
+  if(advStats.cornersA==null||advStats.cornersB==null) return null;
+  const m = pickTotalLineMarket(advStats.cornersA+advStats.cornersB,6.5,'corners');
+  // Désormais réellement vérifiable : il suffit de saisir le total réel de corners
+  // au moment de valider le résultat (champ optionnel dans Histoire).
+  return {...m, cat:'corners', eval:{type:'statLine', stat:'corners', op:m.eval.op, line:m.eval.line}};
+}
+function pickShotsMarket(){
+  if(advStats.shotsA==null||advStats.shotsB==null) return null;
+  const m = pickTotalLineMarket(advStats.shotsA+advStats.shotsB,5.5,'tirs cadrés (cumulés)');
+  return {...m, cat:'tirs cadrés', eval:{type:'statLine', stat:'shots', op:m.eval.op, line:m.eval.line}};
+}
 /* ================================================================
    5quater. SCORE DE FORCE RELATIVE — jugement du vainqueur probable
    séparé du calcul de buts. Le lambda Poisson dit "combien de buts",
@@ -1997,7 +2249,7 @@ function runAnalysisGe(){
   const minEntries = matchFlags.matchType==='coupe' ? 1 : 2;
   if(totalEntries<minEntries){ const el=document.getElementById('in-aDom'); el.classList.add('err'); try{AudioFX.error();}catch(e){} setTimeout(()=>el.classList.remove('err'),700); return; }
 
-  const {lambdaA, lambdaB, totalAdj, zoneA, zoneB, phaseLabel, trendA, trendB, eloIdx, qualityIdx, components}=computeGeneseLambdas();
+  const {lambdaA, lambdaB, totalAdj, zoneA, zoneB, phaseLabel, trendA, trendB, eloIdx, qualityIdx, sigmaDamp, aggregateNote, components}=computeGeneseLambdas();
   if(lambdaA===null||lambdaB===null) return;
 
   const entriesA=store.aSerie.length+store.aDom.length+store.ab.length;
@@ -2006,8 +2258,10 @@ function runAnalysisGe(){
   const advCount=ADV_FIELDS.filter(id=>advStats[id]!=null).length;
   const hasStandings=(standings.rankA!=null && standings.rankB!=null)?1:0;
   const dataConfidence=clamp01((totalEntries+advCount*.5+hasStandings*2)/24);
-  const sigmaMult = matchFlags.matchType==='coupe' ? 1.25 : matchFlags.matchType==='europe' ? 1.12 : 1.0;
-  const rhoCal = getCalibratedRho('football');
+  // sigmaMult élargit l'incertitude par manque de données (coupe/europe = historique plus rare) ;
+  // sigmaDamp la resserre pour la tension tactique d'un stade avancé (demi, finale...) — combinés.
+  const sigmaMult = (matchFlags.matchType==='coupe' ? 1.25 : matchFlags.matchType==='europe' ? 1.12 : 1.0) * (sigmaDamp||1);
+  const rhoCal = getCalibratedRho('football', matchFlags.league);
 
   const matrix=simulateMonteCarloMatrix(lambdaA, lambdaB, dataConfidence, 15000, rhoCal, sigmaMult);
   const sorted=[...matrix].sort((x,y)=>y.p-x.p);
@@ -2040,7 +2294,7 @@ function runAnalysisGe(){
     {label:`${nameB} ou nul (double chance)`, p:pAway+pDraw, cat:'résultat', eval:{type:'resultDC',outcomes:['B','draw']}},
   ].sort((a,b)=>b.p-a.p);
   for(const f of fillers){ if(chosen.length>=5) break; if(!chosen.some(c=>c.label===f.label)) chosen.push(f); }
-  const finalBets=applyMarketRecalibration('football', chosen.slice(0,5));
+  const finalBets=applyMarketRecalibration('football', chosen.slice(0,5), matchFlags.league);
 
   const engines=[
     {name:'Forme récente', on: store.aSerie.length>0||store.bSerie.length>0},
@@ -2071,6 +2325,11 @@ function runAnalysisGe(){
 
   let contextSentence = '';
   if(phaseLabel||zoneA){ const bits=[]; if(phaseLabel) bits.push(`en ${phaseLabel}`); if(zoneA&&zoneB) bits.push(`${nameA} évolue dans ${zoneA} tandis que ${nameB} pointe dans ${zoneB}`); if(bits.length) contextSentence = `Sur le plan du contexte, ${bits.join(', ')}.`; }
+  const STAGE_LABELS = {poules:'phase de groupes', '32e':'32e de finale', '16e':'16e de finale', '8e':'8e de finale', quart:'quart de finale', demi:'demi-finale', finale:'finale'};
+  if((matchFlags.matchType==='coupe'||matchFlags.matchType==='europe') && STAGE_LABELS[matchFlags.stage]){
+    contextSentence += ` Match de ${STAGE_LABELS[matchFlags.stage]} : l'enjeu resserre naturellement le jeu, moins de scénarios extrêmes que d'ordinaire.`;
+  }
+  if(aggregateNote) contextSentence += ` ${aggregateNote}`;
   if(advStats.xgA!=null && advStats.xgB!=null) contextSentence += ` Les xG confirment cette lecture : ${advStats.xgA.toFixed(1)} pour ${nameA} contre ${advStats.xgB.toFixed(1)} pour ${nameB}.`;
   if(eloIdx!==0){ const eloFav=eloIdx>0?nameA:nameB; contextSentence += ` L'écart Elo va dans le même sens, ${eloFav} y est favori.`; }
 
@@ -2109,6 +2368,7 @@ function runAnalysisGe(){
 
   addRecord('football', {
     id: recordId, timestamp: Date.now(), nameA, nameB,
+    league: matchFlags.league||'',
     lambdaA: +lambdaA.toFixed(2), lambdaB: +lambdaB.toFixed(2),
     components,
     topScores: top2.map(s=>({label:`${s.a}-${s.b}`, p:s.p, eval:{type:'exactScore', a:s.a, b:s.b}})),
@@ -2169,8 +2429,18 @@ function bkUpdateRankPreview(prefix){
   });
 });
 document.getElementById('bkMatchday').addEventListener('input', e=>{ bkStandings.matchday = e.target.value || null; });
-const bkMatchFlags = {matchType:'championnat', injuryA:false, fatigueA:false, uncertainA:false, injuryB:false, fatigueB:false, uncertainB:false, absA:0, absB:0};
-document.getElementById('matchTypeBk').addEventListener('change', e=>{ bkMatchFlags.matchType = e.target.value; document.getElementById('cupHintBk').classList.toggle('hidden', e.target.value!=='coupe'); });
+const bkMatchFlags = {matchType:'championnat', league:'', stage:'poules', leg:'sec', aggAllerA:null, aggAllerB:null, injuryA:false, fatigueA:false, uncertainA:false, injuryB:false, fatigueB:false, uncertainB:false, absA:0, absB:0};
+function syncStageBlockBk(){
+  const isKO = bkMatchFlags.matchType==='coupe' || bkMatchFlags.matchType==='europe';
+  document.getElementById('stageBlockBk').classList.toggle('hidden', !isKO);
+  document.getElementById('aggregateBlockBk').classList.toggle('hidden', bkMatchFlags.leg!=='retour');
+}
+document.getElementById('matchTypeBk').addEventListener('change', e=>{ bkMatchFlags.matchType = e.target.value; document.getElementById('cupHintBk').classList.toggle('hidden', e.target.value!=='coupe'); syncStageBlockBk(); });
+document.getElementById('stageBk').addEventListener('change', e=>{ bkMatchFlags.stage = e.target.value; });
+document.getElementById('legBk').addEventListener('change', e=>{ bkMatchFlags.leg = e.target.value; syncStageBlockBk(); });
+document.getElementById('aggAllerABk').addEventListener('input', e=>{ bkMatchFlags.aggAllerA = e.target.value===''?null:parseInt(e.target.value,10); });
+document.getElementById('aggAllerBBk').addEventListener('input', e=>{ bkMatchFlags.aggAllerB = e.target.value===''?null:parseInt(e.target.value,10); });
+document.getElementById('leagueBk').addEventListener('input', e=>{ bkMatchFlags.league = normalizeLeagueName(e.target.value); });
 ['injuryA','fatigueA','uncertainA','injuryB','fatigueB','uncertainB'].forEach(id=>{
   document.getElementById('bk'+id.charAt(0).toUpperCase()+id.slice(1)).addEventListener('change', e=>{ bkMatchFlags[id] = e.target.checked; });
 });
@@ -2199,17 +2469,42 @@ document.getElementById('bkResetBtn').addEventListener('click', ()=>{
   document.getElementById('bkRankPreviewA').textContent=''; document.getElementById('bkRankPreviewB').textContent='';
   BK_ADV_FIELDS.forEach(key=>{ document.getElementById(BK_ADV_ID_MAP[key]).value=''; bkAdv[key]=null; });
   document.getElementById('matchTypeBk').value='championnat'; bkMatchFlags.matchType='championnat';
+  document.getElementById('stageBk').value='poules'; bkMatchFlags.stage='poules';
+  document.getElementById('legBk').value='sec'; bkMatchFlags.leg='sec';
+  document.getElementById('aggAllerABk').value=''; document.getElementById('aggAllerBBk').value='';
+  bkMatchFlags.aggAllerA=null; bkMatchFlags.aggAllerB=null;
+  syncStageBlockBk();
+  document.getElementById('leagueBk').value=''; bkMatchFlags.league='';
   ['injuryA','fatigueA','uncertainA','injuryB','fatigueB','uncertainB'].forEach(id=>{ document.getElementById('bk'+id.charAt(0).toUpperCase()+id.slice(1)).checked=false; bkMatchFlags[id]=false; });
   ['absA','absB'].forEach(id=>{ document.getElementById('bk'+id.charAt(0).toUpperCase()+id.slice(1)).value=''; bkMatchFlags[id]=0; });
   document.getElementById('resultsBk').style.display='none'; document.getElementById('emptyStateBk').style.display='flex';
 });
+
+/* -- Équivalents basket : effet plus modéré, l'écart de points étant bien plus large
+   qu'un écart de buts, une même tension tactique s'y traduit par un impact relatif moindre. */
+const BK_STAGE_TENSION = {poules:1.0, '16e':1.01, '8e':1.02, quart:1.035, demi:1.05, finale:1.07};
+function bkStageAdjustment(stage){
+  const tension = BK_STAGE_TENSION[stage] || 1.0;
+  return {goalDamp: 1/tension, sigmaDamp: 1/Math.sqrt(tension)};
+}
+function bkAggregateAdjustment(leg, aggAllerA, aggAllerB){
+  if(leg!=='retour' || aggAllerA==null || aggAllerB==null) return {factorA:1, factorB:1, note:null};
+  const diff = aggAllerA - aggAllerB;
+  const pressure = clamp(Math.abs(diff)*0.012, 0, 0.10);
+  const manage = clamp(Math.abs(diff)*0.008, 0, 0.07);
+  let factorA=1, factorB=1, note=null;
+  if(diff>0){ factorB=1+pressure; factorA=1-manage; note=`B est mené ${aggAllerA}-${aggAllerB} au cumul : pression offensive attendue.`; }
+  else if(diff<0){ factorA=1+pressure; factorB=1-manage; note=`A est mené ${aggAllerB}-${aggAllerA} au cumul : pression offensive attendue.`; }
+  else { note=`Cumul à égalité ${aggAllerA}-${aggAllerB} après l'aller : manche décisive.`; }
+  return {factorA, factorB, note};
+}
 
 function computeBasketPoints(){
   const aDomFor=avg(bkStore.aDom,0), aDomAg=avg(bkStore.aDom,1);
   const aSerieFor=avg(bkStore.aSerie,0), abFor=avg(bkStore.ab,0);
   const bExtFor=avg(bkStore.bExt,0), bExtAg=avg(bkStore.bExt,1);
   const bSerieFor=avg(bkStore.bSerie,0), baFor=avg(bkStore.ba,0);
-  const Wbk = loadAdaptiveWeights('basketball');
+  const Wbk = loadAdaptiveWeights('basketball', bkMatchFlags.league);
   let ptsA=weightedLambda([{v:aDomFor,w:Wbk.domicile},{v:aSerieFor,w:Wbk.serie},{v:abFor,w:Wbk.h2h},{v:bExtAg,w:Wbk.defense_adverse}]);
   let ptsB=weightedLambda([{v:bExtFor,w:Wbk.domicile},{v:bSerieFor,w:Wbk.serie},{v:baFor,w:Wbk.h2h},{v:aDomAg,w:Wbk.defense_adverse}]);
   const basketComponents = {domicileA:aDomFor, serieA:aSerieFor, h2hA:abFor, defense_adverseA:bExtAg, domicileB:bExtFor, serieB:bSerieFor, h2hB:baFor, defense_adverseB:aDomAg};
@@ -2239,7 +2534,14 @@ function computeBasketPoints(){
     if(bkMatchFlags.uncertainB) ptsB *= 0.94;
     ptsB *= absenceAdjustment(bkMatchFlags.absB);
   }
-  return {ptsA, ptsB, totalAdj, zoneA, zoneB, phaseLabel, trendA, trendB, eloIdx:eIdx, qualityIdx, components:basketComponents};
+  const bkStageIsKO = bkMatchFlags.matchType==='coupe' || bkMatchFlags.matchType==='europe';
+  const bkStageAdj = bkStageIsKO ? bkStageAdjustment(bkMatchFlags.stage) : {goalDamp:1, sigmaDamp:1};
+  if(ptsA!==null) ptsA *= bkStageAdj.goalDamp;
+  if(ptsB!==null) ptsB *= bkStageAdj.goalDamp;
+  const bkAggAdj = bkAggregateAdjustment(bkMatchFlags.leg, bkMatchFlags.aggAllerA, bkMatchFlags.aggAllerB);
+  if(ptsA!==null) ptsA *= bkAggAdj.factorA;
+  if(ptsB!==null) ptsB *= bkAggAdj.factorB;
+  return {ptsA, ptsB, totalAdj, zoneA, zoneB, phaseLabel, trendA, trendB, eloIdx:eIdx, qualityIdx, sigmaDamp:bkStageAdj.sigmaDamp, aggregateNote:bkAggAdj.note, components:basketComponents};
 }
 function simulateBasketball(pointsA, pointsB, dataConfidence, iterations=12000, sigmaMult=1){
   const sigma = (14*(1-clamp01(dataConfidence)) + 8) * sigmaMult;
@@ -2303,7 +2605,7 @@ function runAnalysisBk(){
   const minEntriesBk = bkMatchFlags.matchType==='coupe' ? 1 : 2;
   if(totalEntries<minEntriesBk){ const el=document.getElementById('bk-in-aDom'); el.classList.add('err'); try{AudioFX.error();}catch(e){} setTimeout(()=>el.classList.remove('err'),700); return; }
 
-  const {ptsA, ptsB, totalAdj, zoneA, zoneB, phaseLabel, trendA, trendB, eloIdx, qualityIdx, components}=computeBasketPoints();
+  const {ptsA, ptsB, totalAdj, zoneA, zoneB, phaseLabel, trendA, trendB, eloIdx, qualityIdx, sigmaDamp, aggregateNote, components}=computeBasketPoints();
   if(ptsA===null||ptsB===null) return;
 
   const entriesA=bkStore.aSerie.length+bkStore.aDom.length+bkStore.ab.length;
@@ -2312,7 +2614,7 @@ function runAnalysisBk(){
   const advCount=BK_ADV_FIELDS.filter(k=>bkAdv[k]!=null).length;
   const hasStandings=(bkStandings.rankA!=null && bkStandings.rankB!=null)?1:0;
   const dataConfidence=clamp01((totalEntries+advCount*.5+hasStandings*2)/24);
-  const sigmaMultBk = bkMatchFlags.matchType==='coupe' ? 1.25 : bkMatchFlags.matchType==='europe' ? 1.12 : 1.0;
+  const sigmaMultBk = (bkMatchFlags.matchType==='coupe' ? 1.25 : bkMatchFlags.matchType==='europe' ? 1.12 : 1.0) * (sigmaDamp||1);
 
   const sims = simulateBasketball(ptsA, ptsB, dataConfidence, 12000, sigmaMultBk);
   const winsA = sims.filter(s=>s.a>s.b).length;
@@ -2338,7 +2640,7 @@ function runAnalysisBk(){
   if(bkAdv.rebA!=null && bkAdv.rebB!=null) chosen.push({...pickTotalLineMarket(bkAdv.rebA+bkAdv.rebB, 70, 'rebonds (cumulés)'), cat:'rebonds', eval:{type:'unverifiable'}});
   else if(bkAdv.astA!=null && bkAdv.astB!=null) chosen.push({...pickTotalLineMarket(bkAdv.astA+bkAdv.astB, 35, 'passes décisives (cumulées)'), cat:'passes', eval:{type:'unverifiable'}});
   else chosen.push({label:`Score ≈ ${scoreBrackets[1].a}-${scoreBrackets[1].b} (±5 pts)`, p:scoreBrackets[1].p, cat:'score', eval:scoreBrackets[1].eval});
-  const finalBets = applyMarketRecalibration('basketball', chosen.slice(0,5));
+  const finalBets = applyMarketRecalibration('basketball', chosen.slice(0,5), bkMatchFlags.league);
 
   const engines=[
     {name:'Forme récente', on: bkStore.aSerie.length>0||bkStore.bSerie.length>0},
@@ -2368,6 +2670,11 @@ function runAnalysisBk(){
 
   let contextSentence = '';
   if(phaseLabel||zoneA){ const bits=[]; if(phaseLabel) bits.push(`en ${phaseLabel}`); if(zoneA&&zoneB) bits.push(`${nameA} évolue ${zoneA==='le sommet du classement'?'au sommet':'dans '+zoneA} pendant que ${nameB} pointe dans ${zoneB}`); if(bits.length) contextSentence = `Côté classement, ${bits.join(', ')}.`; }
+  const BK_STAGE_LABELS = {poules:'phase de groupes', '16e':'16e de finale', '8e':'8e de finale', quart:'quart de finale', demi:'demi-finale', finale:'finale'};
+  if((bkMatchFlags.matchType==='coupe'||bkMatchFlags.matchType==='europe') && BK_STAGE_LABELS[bkMatchFlags.stage]){
+    contextSentence += ` Match de ${BK_STAGE_LABELS[bkMatchFlags.stage]} : jeu resserré, moins de scénarios extrêmes.`;
+  }
+  if(aggregateNote) contextSentence += ` ${aggregateNote}`;
   if(eloIdx!==0){ const eloFav=eloIdx>0?nameA:nameB; contextSentence += ` L'écart Elo confirme ${eloFav} comme favori.`; }
 
   const meilleur=[...finalBets].sort((a,b)=>b.p-a.p)[0];
@@ -2402,6 +2709,7 @@ function runAnalysisBk(){
 
   addRecord('basketball', {
     id: recordIdBk, timestamp: Date.now(), nameA, nameB,
+    league: bkMatchFlags.league||'',
     lambdaA: +ptsA.toFixed(1), lambdaB: +ptsB.toFixed(1),
     components,
     topScores: scoreBrackets.map(s=>({label:`${s.a}-${s.b}`, p:s.p, eval:s.eval})),
@@ -2472,10 +2780,25 @@ function renderHistory(){
   const valueCount = allBets.filter(b=>b.edge!=null && b.edge>0).length;
   const scoreCount = list.flatMap(r=>r.topScores).filter(s=>s.p>=0.15).length;
 
+  // Filtre de ligue : "Toutes ligues" = comportement global historique (par défaut).
+  // Choisir une ligue détectée affine rho / poids / calibration par marché sur son
+  // propre historique dès qu'elle en a assez (repli automatique sinon, voir moteur).
+  if(!(sport in leagueFilterState)) leagueFilterState[sport] = '';
+  const knownLeagues = listKnownLeagues(sport);
+  const selectedLeague = leagueFilterState[sport] && knownLeagues.includes(leagueFilterState[sport]) ? leagueFilterState[sport] : '';
+  const leagueSelectHtml = knownLeagues.length ? `
+    <div class="summary-card" style="flex:2; min-width:220px;">
+      <div class="lbl" style="font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px;">Ligue affichée</div>
+      <select id="leagueFilterSelect-${sport}" style="width:100%; background:var(--panel2,#0d0f16); border:1px solid var(--line); border-radius:8px; padding:8px 10px; color:var(--text); font-size:12px;">
+        <option value="">Toutes ligues (global)</option>
+        ${knownLeagues.map(l=>`<option value="${l}" ${l===selectedLeague?'selected':''}>${l}</option>`).join('')}
+      </select>
+    </div>` : '';
+
   // Bilan vérifié : PERMANENT, basé uniquement sur les résultats réels que vous avez
   // renseignés. C'est la seule mesure honnête de fiabilité de l'app — pas un chiffre
   // inventé. S'affiche seulement une fois qu'au moins un résultat a été vérifié.
-  const calibByMarket = computeCalibrationByMarket(sport);
+  const calibByMarket = computeCalibrationByMarket(sport, selectedLeague||null);
   const calibHtml = calibByMarket ? Object.keys(calibByMarket).map(mt=>{
     const c = calibByMarket[mt];
     const badgeColor = c.wellCalibrated ? 'var(--teal)' : 'var(--red)';
@@ -2486,12 +2809,12 @@ function renderHistory(){
     </div>`;
   }).join('') : `<div class="summary-card" style="flex:2; min-width:220px;"><div class="lbl" style="font-size:11px; line-height:1.5;">Aucun résultat vérifié pour l'instant — entrez le score final d'un match ci-dessous pour commencer à construire votre bilan réel, segmenté par type de pari.</div></div>`;
 
-  const rhoInfo = sport==='football' ? calibrateRho('football') : null;
-  const rhoHtml = rhoInfo ? `<div class="summary-card" style="border-color:var(--violet-dim,var(--violet));"><div class="num" style="color:var(--violet); font-size:20px;">${rhoInfo.rho}</div><div class="lbl">ρ Dixon-Coles ${rhoInfo.calibrated?'auto-calibré':`(défaut — ${rhoInfo.n}/${rhoInfo.needed} vérifiés)`}</div></div>` : '';
+  const rhoInfo = sport==='football' ? calibrateRho('football', selectedLeague||null) : null;
+  const rhoHtml = rhoInfo ? `<div class="summary-card" style="border-color:var(--violet-dim,var(--violet));"><div class="num" style="color:var(--violet); font-size:20px;">${rhoInfo.rho}</div><div class="lbl">ρ Dixon-Coles ${rhoInfo.calibrated?(rhoInfo.scopedToLeague?`auto-calibré (${selectedLeague})`:'auto-calibré (global)'):`(défaut — ${rhoInfo.n}/${rhoInfo.needed} vérifiés)`}</div></div>` : '';
 
-  const adaptSummary = adaptiveWeightsSummary(sport);
+  const adaptSummary = adaptiveWeightsSummary(sport, selectedLeague||null);
   const weightsHtml = `<div class="summary-card" style="flex:2; min-width:260px;">
-    <div class="lbl" style="font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px;">Réglages du modèle — poids des sources (${adaptSummary.totalN}/40 pour ajustement auto)</div>
+    <div class="lbl" style="font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px;">Réglages du modèle — poids des sources (${adaptSummary.totalN}/40 pour ajustement auto)${adaptSummary.scopedToLeague?` · propres à ${selectedLeague}`:''}</div>
     <div style="display:flex; flex-wrap:wrap; gap:6px;">
       ${ADAPTIVE_SOURCES.map(k=>`<span class="engine-badge on" style="font-size:10px;">${k.replace('_',' ')} · ${(adaptSummary.weights[k]*100).toFixed(0)}%</span>`).join('')}
     </div>
@@ -2502,10 +2825,14 @@ function renderHistory(){
     <div class="summary-card"><div class="num" style="color:var(--gold)">${safeCount}</div><div class="lbl">Safe Bets identifiés</div></div>
     <div class="summary-card"><div class="num" style="color:var(--sky)">${valueCount}</div><div class="lbl">Value Bets identifiés</div></div>
     <div class="summary-card"><div class="num" style="color:var(--violet)">${scoreCount}</div><div class="lbl">Scores forts identifiés</div></div>
+    ${leagueSelectHtml}
     ${rhoHtml}
     ${calibHtml}
     ${weightsHtml}
   `;
+
+  const leagueSelectEl = document.getElementById(`leagueFilterSelect-${sport}`);
+  if(leagueSelectEl) leagueSelectEl.addEventListener('change', e=>{ leagueFilterState[sport]=e.target.value; renderHistory(); });
 
   if(list.length===0){
     panel.innerHTML=`<div class="glass empty-state"><div class="glyph">Ø</div><p>Aucune analyse ${sport==='football'?'football':'basketball'} enregistrée aujourd'hui. Générez un verdict dans ${sport==='football'?'Genèse':'Basket Analyse'} pour l'y voir apparaître.</p></div>`;
@@ -2517,14 +2844,25 @@ function renderHistory(){
         <span>✓ Résultat enregistré : <b>${r.finalScore.a}-${r.finalScore.b}</b></span>
         <div class="rc-evals">${r.evaluations.map(e=>`<span class="eval-chip ${e.hit===true?'hit':e.hit===false?'miss':'nv'}">${e.hit===true?'✓':e.hit===false?'✗':'—'} ${e.label}</span>`).join('')}</div>
       </div>
-    ` : `
+    ` : (()=>{
+      const hasCorners = r.bets.some(b=>b.eval && b.eval.type==='statLine' && b.eval.stat==='corners');
+      const hasShots = r.bets.some(b=>b.eval && b.eval.type==='statLine' && b.eval.stat==='shots');
+      const statInputs = (hasCorners||hasShots) ? `
+        <div class="rc-result-form" style="border-top:none; margin-top:8px; padding-top:0;">
+          ${hasCorners ? `<input type="number" placeholder="Corners réels" class="rc-score-input" style="width:110px;" id="rcCorners-${r.id}">` : ''}
+          ${hasShots ? `<input type="number" placeholder="Tirs cadrés réels" class="rc-score-input" style="width:130px;" id="rcShots-${r.id}">` : ''}
+        </div>
+        <p style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--text-faint); margin:2px 0 0;">Optionnel : renseigner ces totaux rend les paris corners/tirs cadrés réellement vérifiables (sinon ils restent non évalués).</p>
+      ` : '';
+      return `
       <div class="rc-result-form">
         <input type="number" placeholder="${r.nameA}" class="rc-score-input" id="rcA-${r.id}">
         <span>—</span>
         <input type="number" placeholder="${r.nameB}" class="rc-score-input" id="rcB-${r.id}">
         <button class="rc-validate-btn sfx-tap" data-id="${r.id}" data-sport="${sport}">Valider le résultat</button>
       </div>
-    `;
+      ${statInputs}
+    `;})();
     const remainMs = Math.max(0, RECORD_TTL_MS - (Date.now() - r.timestamp));
     return `
     <div class="record-card">
@@ -2542,7 +2880,12 @@ function renderHistory(){
       const id=btn.dataset.id, sp=btn.dataset.sport;
       const aVal=document.getElementById(`rcA-${id}`).value, bVal=document.getElementById(`rcB-${id}`).value;
       if(aVal===''||bVal===''){ try{AudioFX.error();}catch(e){} return; }
-      markResult(sp, id, parseInt(aVal,10), parseInt(bVal,10));
+      const cornersEl = document.getElementById(`rcCorners-${id}`);
+      const shotsEl = document.getElementById(`rcShots-${id}`);
+      const finalStats = {};
+      if(cornersEl && cornersEl.value!=='') finalStats.corners = parseInt(cornersEl.value,10);
+      if(shotsEl && shotsEl.value!=='') finalStats.shots = parseInt(shotsEl.value,10);
+      markResult(sp, id, parseInt(aVal,10), parseInt(bVal,10), finalStats);
     });
   });
 }
@@ -2685,6 +3028,16 @@ function renderJournal(){
         <div class="lbl" style="font-size:10.5px;">🔔 Notifications de résultats</div>
         <div style="font-size:12px; margin-top:6px; color:${notifOn?'var(--teal)':'var(--text-dim)'};">${notifOn ? 'Activées — vous serez notifié à chaque score noté' : 'Désactivées — appuyer pour activer'}</div>
       </div>
+      <div class="summary-card" style="flex:2; min-width:260px;">
+        <div class="lbl" style="font-size:10.5px; margin-bottom:8px;">💾 Sauvegarde de l'historique complet</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button id="exportDataBtn" class="rc-validate-btn sfx-tap" style="background:linear-gradient(135deg, var(--gold), var(--gold-dim, var(--gold)));">Exporter (.json)</button>
+          <label class="rc-validate-btn sfx-tap" style="background:var(--panel2,#0d0f16); border:1px solid var(--line); color:var(--text); cursor:pointer;">Importer
+            <input type="file" id="importDataInput" accept="application/json" style="display:none;">
+          </label>
+        </div>
+        <div id="importStatusMsg" style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--text-faint); margin-top:6px;"></div>
+      </div>
     </div>`;
 
   const exactHtml = day.exactScores.length ? `
@@ -2712,12 +3065,89 @@ function renderJournal(){
     else { await requestNotificationPermission(); }
     renderJournal();
   });
+
+  const exportBtn = document.getElementById('exportDataBtn');
+  if(exportBtn) exportBtn.addEventListener('click', exportAllData);
+  const importInput = document.getElementById('importDataInput');
+  if(importInput) importInput.addEventListener('change', handleImportFile);
+}
+
+/* ================================================================
+   9ter. EXPORT / IMPORT — protège tout l'historique accumulé
+   (Journal + Track + réglages de calibration) contre une perte
+   (cache vidé, changement d'appareil). Le fichier exporté couvre
+   tout ce qui compte pour la calibration, pas seulement l'affichage.
+================================================================= */
+async function exportAllData(){
+  const payload = {
+    exportedAt: new Date().toISOString(),
+    version: 1,
+    archive: ARCHIVE,
+    track: TRACK,
+    db: DB,
+    settings: {}
+  };
+  // Récupère tous les réglages de calibration (rho / poids / perf de sources),
+  // y compris les variantes par ligue, quel que soit leur nombre.
+  for(let i=0;i<localStorage.length;i++){
+    const k = localStorage.key(i);
+    if(k && (k.startsWith('ea_rho_')||k.startsWith('ea_weights_')||k.startsWith('ea_srcperf_'))){
+      payload.settings[k] = localStorage.getItem(k);
+    }
+  }
+  const blob = new Blob([JSON.stringify(payload)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const stamp = new Date().toISOString().slice(0,10);
+  a.href = url; a.download = `ea-sauvegarde-${stamp}.json`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function handleImportFile(e){
+  const file = e.target.files[0];
+  const statusEl = document.getElementById('importStatusMsg');
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = async (ev)=>{
+    try{
+      const payload = JSON.parse(ev.target.result);
+      if(!payload || !payload.track){ throw new Error('format invalide'); }
+      // Fusionne plutôt qu'écrase : les entrées Track sont dédupliquées par timestamp+équipes,
+      // pour permettre d'importer une sauvegarde sans perdre ce qui a été analysé depuis.
+      ['football','basketball'].forEach(sport=>{
+        const incoming = (payload.track[sport]||[]);
+        const existingKeys = new Set(TRACK[sport].map(x=>x.timestamp+'|'+x.nameA+'|'+x.nameB));
+        incoming.forEach(entry=>{
+          const key = entry.timestamp+'|'+entry.nameA+'|'+entry.nameB;
+          if(!existingKeys.has(key)){ TRACK[sport].push(entry); existingKeys.add(key); if(idbReady) idbAddEntry(sport, entry); }
+        });
+        TRACK[sport].sort((a,b)=>b.timestamp-a.timestamp);
+      });
+      persistTrack();
+      if(payload.archive){
+        Object.keys(payload.archive).forEach(day=>{
+          if(!ARCHIVE[day]) ARCHIVE[day] = payload.archive[day];
+        });
+        persistArchive();
+      }
+      if(payload.settings){
+        Object.keys(payload.settings).forEach(k=>{
+          if(!localStorage.getItem(k)) localStorage.setItem(k, payload.settings[k]);
+        });
+      }
+      if(statusEl) statusEl.textContent = '✓ Import réussi — historique fusionné.';
+      renderHistory(); renderJournal(); renderBets('football'); renderBets('basketball');
+    }catch(err){
+      if(statusEl) statusEl.textContent = '✗ Fichier invalide — import annulé.';
+    }
+  };
+  reader.readAsText(file);
 }
 
 
-function initApp(){
+async function initApp(){
   loadDB();
-  loadTrack();
+  await loadTrack();
   loadArchive();
   renderHistory();
   renderBets('football');
